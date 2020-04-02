@@ -3,7 +3,6 @@
  * https://github.com/facebook/react-native
  *
  * @format
- * @flow strict-local
  */
 
 import React,{Fragment} from 'react';
@@ -20,22 +19,22 @@ import {
 import Styled from 'styled-components/native';
 
 const ScrollView = Styled.ScrollView`
-  background-color:${Colors.lighter}
+  background-color:${Colors.lighter};
 `;
 const Body = Styled.View`
-  background-color: ${Colors.white}
+  background-color: ${Colors.white};
 `;
 
 const SectionContainer = Styled.View`
   margin-top:32px;
-  background-color:${Colors.white}
+  padding-horizontal:24px;
 `;
 
 const SectionDescription = Styled.Text`
-  margin-top: 8,
-  font-size: 18,
-  font-weight: 400,
-  color: ${Colors.dark},
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: 400;
+  color: ${Colors.dark};
 `;
 
 const Highlight = Styled.Text`
