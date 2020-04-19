@@ -9,7 +9,8 @@ interface Props {
 const TodoListContext = createContext<ITodoListContext>({
     todoList:[],
     addTodoList:(todo:string): void=>{},
-    removeTodoList:(index:number):void=>{}
+    removeTodoList:(index:number):void=>{},
+    deleteAllTodoList:():void=>{},
 })
 
 const TodoListContextProvider = ({children}:Props)=>{
@@ -25,6 +26,11 @@ const TodoListContextProvider = ({children}:Props)=>{
         setTodoList(list);
         AsyncStorage.setItem('todoList',JSON.stringify(list));
     };
+    const deleteAllTodoList = ():void=>{
+        setTodoList([]);
+        AsyncStorage.setItem('todoList',JSON.stringify([]));
+    }
+
     const initData = async ()=>{
         try{
             const list=await AsyncStorage.getItem('todoList');
@@ -44,7 +50,7 @@ const TodoListContextProvider = ({children}:Props)=>{
     return(
         <TodoListContext.Provider
             value={{
-                todoList, addTodoList, removeTodoList,
+                todoList, addTodoList, removeTodoList, deleteAllTodoList,
             }}
         >
             {children}

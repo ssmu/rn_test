@@ -16,14 +16,14 @@ interface Props {
     onPress?:()=>void
 }
 
-const AddButton = ({onPress}:Props)=>{
+const DeleteAllButton = ({onPress}:Props)=>{
     return(
         <Container>
             <ButtonContainer onPress={onPress}>
-                <Icon source={require('~/Assets/Images/add.png')} />
+                <Icon source={require('~/Assets/Images/remove.png')} />
             </ButtonContainer>
         </Container>    
     );
 };
 
-export default AddButton;
+export default DeleteAllButton;

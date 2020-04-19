@@ -27,4 +27,4 @@ const TodoInput = ({hideTodoInput }:Props)=>{
     );
 };
 
-export default AddTodoInputTodo;
+export default TodoInput;

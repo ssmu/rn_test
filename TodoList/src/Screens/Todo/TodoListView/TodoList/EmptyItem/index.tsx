@@ -6,7 +6,7 @@ const Container=Styled.View`
     align-items:center;
     justify-content:center;
 `;
-const Label = Styled.View``;
+const Label = Styled.Text``;
 interface Props {}
 
 const EmptyItem = ({}:Props)=>{
