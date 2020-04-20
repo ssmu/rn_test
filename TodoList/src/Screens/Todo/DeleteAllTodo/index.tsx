@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Styled from 'styled-components/native';
 import DeleteBtn from './DeleteBtn';
 
@@ -14,6 +14,8 @@ interface Props {
 }
 
 const DeleteAllTodo = ({}:Props)=>{
+    const [showInput, setShowInput] = useState<boolean>(false);
+
     return(
         <>
         <DeleteBtn />
