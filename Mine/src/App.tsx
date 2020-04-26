@@ -13,12 +13,12 @@ import Styled from 'styled-components/native';
 import {MineFinderContextProvider} from '~/Context/MineFinderContext';
 import MineFinder from '~/Screens/MineFinder';
 
-const Container = Styled.View`
+const Container = Styled.SafeAreaView`
   flex:1;
-  background-color:#EEE;
 `;
+interface Props {}
 
-const App = () => {
+const App = ({}:Props) => {
   return (
     <MineFinderContextProvider>
       <Container>
