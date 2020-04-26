@@ -1,9 +1,11 @@
 import React, {useContext} from 'react';
 import Styled from 'styled-components/native';
+import Button from './Button';
+
 import {MineFinderContext} from '~/Context/MineFinderContext';
 
 const Container = Styled.View`
-    height:40px;
+    flex:1;
     justify-content:center;
     align-items:center;
 `;
@@ -19,10 +21,15 @@ const Board = ({}:Props)=>{
     const {board, clickButton} = useContext<IMineFinderContext>(
         MineFinderContext
     );
-    
     return(
         <Container>
-            <TitleLabel>Todo List App</TitleLabel>
+            <Container>
+            {
+                board.map((x,key)=>(
+                <Button key={key} clicked={x} idx={key} 
+                    onPress={clickButton}/>))
+            }
+            </Container>
         </Container>
     );
 };

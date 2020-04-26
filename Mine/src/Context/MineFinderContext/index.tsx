@@ -18,23 +18,26 @@ const MineFinderContextProvider = ({children}:Props)=>{
     const [minePosition, setminePosition] = useState<Array<number>>([]);
     const clickButton = (index:number):void=>{
         if(minePosition.includes(index)){
-            
-        }else{
-            const newBoard = board
-            newBoard[index]=true
-            setboard(newBoard);
+            console.log("지뢰 밟았다!")
         }
+        const newBoard = [...board]
+        newBoard[index]=true
+        setboard(newBoard);
     };
 
     const initBoard = async ()=>{
         try{
             const boardsize = 16;
             const n_mine = 1;
-            const init_board = Array<false>(boardsize);
+            const init_board = Array<boolean>(boardsize)
+            for(var i=0;i<boardsize;i++){
+                init_board[i]=false
+            }
             const init_minePosition = getRandomNumberList(n_mine, 0, boardsize)
-            console.log("board init", init_board, init_minePosition)
-            // setminePosition(init_minePosition);
-            // setboard(init_board);
+            setminePosition(init_minePosition);
+            setboard(init_board);
+            
+            console.log(init_board, init_minePosition)
         }catch(e){
             console.log(e)
         }
