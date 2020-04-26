@@ -1,5 +1,5 @@
 import React, {createContext, useState, useEffect} from 'react';
-import { parseSync } from '@babel/core';
+// import { parseSync } from '@babel/core';
 // import AsyncStorage from '@react-native-community/async-storage';
 
 interface Props {

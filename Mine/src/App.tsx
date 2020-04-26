@@ -11,6 +11,7 @@
 import React,{Fragment} from 'react';
 import Styled from 'styled-components/native';
 import {MineFinderContextProvider} from '~/Context/MineFinderContext';
+import MineFinder from '~/Screens/MineFinder';
 
 const Container = Styled.View`
   flex:1;
@@ -21,9 +22,9 @@ const App = () => {
   return (
     <MineFinderContextProvider>
       <Container>
+        <MineFinder />
       </Container>
     </MineFinderContextProvider>
-    
   );
 };
 

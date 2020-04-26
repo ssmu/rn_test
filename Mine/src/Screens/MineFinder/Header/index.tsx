@@ -1,6 +1,5 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import Styled from 'styled-components/native';
-import {MineFinderContext} from '~/Context/MineFinderContext';
 
 const Container = Styled.View`
     height:40px;
@@ -15,18 +14,12 @@ const TitleLabel=Styled.Text`
 
 interface Props {}
 
-const Board = ({}:Props)=>{
-    const {board, clickButton} = useContext<IMineFinderContext>(
-        MineFinderContext
-    );
-    
+const Header = ({}:Props)=>{
     return(
         <Container>
-            <TitleLabel>Todo List App</TitleLabel>
+            <TitleLabel>Mine</TitleLabel>
         </Container>
     );
 };
 
-
-
-export default Board;
+export default Header;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Styled from 'styled-components/native';
+// import Board from './Board';
 import Header from './Header';
-import TodoList from './TodoList';
 
 
 const Container = Styled.View`
@@ -10,13 +10,13 @@ const Container = Styled.View`
 
 interface Props {}
 
-const TodoListView = ({}:Props)=>{
+const MineFinder = ({}:Props)=>{
     return(
         <Container>
             <Header />
-            <TodoList />
+            {/* <Board /> */}
         </Container>
     )
 }
 
-export default TodoListView
+export default MineFinder
