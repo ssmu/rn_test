@@ -30,11 +30,11 @@ const MineFinderContextProvider = ({children}:Props)=>{
         try{
             const boardsize = 16;
             const n_mine = 1;
-            const board = Array<false>(boardsize);
-            const minePosition = getRandomNumberList(n_mine, 0, boardsize)
-            
-            setminePosition(minePosition);
-            setboard(board);
+            const init_board = Array<false>(boardsize);
+            const init_minePosition = getRandomNumberList(n_mine, 0, boardsize)
+            console.log("board init", init_board, init_minePosition)
+            // setminePosition(init_minePosition);
+            // setboard(init_board);
         }catch(e){
             console.log(e)
         }
