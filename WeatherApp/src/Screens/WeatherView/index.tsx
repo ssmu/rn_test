@@ -41,7 +41,7 @@ const Temperature = Styled.Text`
 `;
 
 interface Props {}
-const API_KEY='Z%2FE73cetQA9YNkF1BxzPihfthUp8eYMd2HJI4o3QDqOlZLBahilKWdHfR6hwYg2mmHFPkMvAr16UNlyWdbp7sA%3D%3D';
+const API_KEY='53c7ae4e7d8fdcdd352b25802333532e';
 interface IWeather {
     temperature?:number;
     weather?:string;
@@ -64,7 +64,7 @@ const WeatherView = ({}:Props)=>{
             const {latitude, longitude} = position.coords;
             // axios가 좋긴 한데 이게 업데이트를 못 쫓아오는 경우가 있다고 함. response timeout이 없네...
             fetch(
-                `http://apis.data.go.kr/1360000/VilageFcstInfoService?serviceKey=${API_KEY}&nx=${latitude}&ny=${longitude}&dataType=JSON&pageNo=1&numOfRows=10&base_date=${dt}&base_time=${hh}`
+                `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
             )
             .then(res =>res.json())
             .then(json=>{
