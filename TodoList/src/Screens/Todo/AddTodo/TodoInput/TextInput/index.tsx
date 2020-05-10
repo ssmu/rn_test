@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import Styled from 'styled-components/native';
 
 import {TodoListContext} from '~/Context/TodoListContext';
@@ -7,7 +7,6 @@ const Input = Styled.TextInput`
     width : 100%;
     height : 40px;
     background-color : #FFF;
-    padding : 0px 8px;
 `;
 
 interface Props {
@@ -16,6 +15,7 @@ interface Props {
 
 const TextInput = ({hideTodoInput}:Props) => {
     const {addTodoList} = useContext<ITodoListContext>(TodoListContext);
+    const [value, setvalue]=useState<string>("")
     return(
         <Input 
             autoFocus={true}
@@ -27,6 +27,8 @@ const TextInput = ({hideTodoInput}:Props) => {
                 addTodoList(nativeEvent.text);
                 hideTodoInput();
             }}
+            onChangeText={text=>setvalue(text)}
+            value={value}
         />
     );
 };
