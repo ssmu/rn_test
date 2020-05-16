@@ -21,4 +21,5 @@ const App = ({}:Props) => {
     </>
   );
 };
+
 export default App;

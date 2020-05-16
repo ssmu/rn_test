@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-// import { NavigationScreenProp, NavigationState } from 'react-navigation';
-import { NavigationScreenProp, NavigationState } from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RouteProp, NavigationContainer } from '@react-navigation/native';
+
 import Styled from 'styled-components/native';
 
-import BitCatalogList from './BigCatalogList';
+import BigCatalogList from './BigCatalogList';
 import SubCatalogList from './SubCatalogList';
 
 const Container = Styled.ScrollView`
@@ -18,14 +19,23 @@ const StyleButton = Styled.TouchableOpacity`
 const Icon = Styled.Image`
 `;
 
-interface Props {
-  navigation: NavigationScreenProp<NavigationState>;
-}
+type RootStackParamList = {
+  Login: undefined;
+  MovieHome: {
+    logout:()=>void
+  };
+  MovieDetail: {
+      id:number
+  };
+};
 
-const MovieHome = ({ navigation }: Props) => {
+type Props = StackScreenProps<RootStackParamList,'MovieHome'>
+type INaviProps = StackScreenProps<RootStackParamList, 'MovieHome'>
+
+const MovieHome = ({ route, navigation }:Props) => {
   const _logout = () => {
     AsyncStorage.removeItem('key');
-    navigation.navigate('LoginNavigator');
+    navigation.navigate('Login');
   };
 
   useEffect(() => {
@@ -34,9 +44,37 @@ const MovieHome = ({ navigation }: Props) => {
     });
   }, []);
 
+  useLayoutEffect(()=>{
+    const logout = route.params.logout;
+    navigation.setOptions(()=>{
+      return {
+        title: 'MOVIEAPP',
+        headerTintColor: '#E70915',
+        headerStyle: {
+          backgroundColor: '#141414',
+          borderBottomWidth: 0,
+        },
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+        headerBackTitle: null,
+        headerRight: (
+          <StyleButton
+            onPress={() => {
+              if (logout && typeof logout === 'function') {
+                logout();
+              }
+            }}>
+            <Icon source={require('~/Assets/Images/ic_logout.png')} />
+          </StyleButton>
+      ),
+    }
+  })
+  },[navigation])
+
   return (
     <Container>
-      <BitCatalogList
+      <BigCatalogList
         url="https://yts.lt/api/v2/list_movies.json?sort_by=like_count&order_by=desc&limit=5"
         onPress={(id: number) => {
           navigation.navigate('MovieDetail', {
@@ -71,38 +109,8 @@ const MovieHome = ({ navigation }: Props) => {
           });
         }}
       />
-    </Container>
+    </Container> 
   );
-};
-
-interface INaviProps {
-  navigation: NavigationScreenProp<NavigationState>;
-}
-
-MovieHome.navigationOptions = ({ navigation }: INaviProps) => {
-  const logout = navigation.getParam('logout');
-  return {
-    title: 'MOVIEAPP',
-    headerTintColor: '#E70915',
-    headerStyle: {
-      backgroundColor: '#141414',
-      borderBottomWidth: 0,
-    },
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-    headerBackTitle: null,
-    headerRight: (
-      <StyleButton
-        onPress={() => {
-          if (logout && typeof logout === 'function') {
-            logout();
-          }
-        }}>
-        <Icon source={require('~/Assets/Images/ic_logout.png')} />
-      </StyleButton>
-    ),
-  };
 };
 
 export default MovieHome;
