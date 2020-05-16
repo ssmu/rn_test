@@ -39,13 +39,12 @@ const MovieHome = ({ route, navigation }:Props) => {
   };
 
   useEffect(() => {
+    console.log(route.params)
     navigation.setParams({
       logout: _logout,
     });
-  }, []);
-
-  useLayoutEffect(()=>{
-    const logout = route.params.logout;
+    console.log(route.params)
+    const logout = route.params.logout
     navigation.setOptions(()=>{
       return {
         title: 'MOVIEAPP',
@@ -70,7 +69,7 @@ const MovieHome = ({ route, navigation }:Props) => {
       ),
     }
   })
-  },[navigation])
+  }, []);
 
   return (
     <Container>

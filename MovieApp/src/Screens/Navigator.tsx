@@ -33,9 +33,7 @@ const LoginNavigator = () => {
         },
       };
     return (
-        <>
-        <Stack.Screen name="Login" component={Login} options={navigationOptions}></Stack.Screen>
-        </>
+        <Stack.Screen name="Login" component={Login} options={navigationOptions} />
     )
 }
 
@@ -76,9 +74,27 @@ const Navigator = ()=>{
         return(
             <NavigationContainer>
                 <Stack.Navigator>
-                {isSignedIn ?  
-                    MovieNavigator : LoginNavigator
-                }
+                    <Stack.Screen name="Login" component={Login} options={{
+                        title: 'MOVIEAPP',
+                        headerTransparent: true,
+                        headerTintColor: '#E70915',
+                        headerTitleStyle: {
+                        fontWeight: 'bold',
+                        },
+                    }} />
+                    {/* <LoginNavigator /> */}
+                    <Stack.Screen name="MovieHome" component={MovieHome} ></Stack.Screen>
+                    <Stack.Screen name="MovieDetail" component={MovieDetail} options={{
+                        title: 'MOVIEAPP',
+                        headerTintColor: '#E70915',
+                        headerStyle: {
+                        backgroundColor: '#141414',
+                        borderBottomWidth: 0,
+                        },
+                        headerTitleStyle: {
+                        fontWeight: 'bold',
+                        },
+                    }} />
                 </Stack.Navigator>
             </NavigationContainer>
         )
