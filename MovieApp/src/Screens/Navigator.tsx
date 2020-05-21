@@ -59,15 +59,18 @@ const MovieNavigator = () => {
 
 const Navigator = ()=>{
     const [isSignedIn, setIsSignedIn] = useState<string|null>('');
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    
     AsyncStorage.getItem('key')
         .then(value=>{
             setIsSignedIn(value)
+            setIsLoading(false)
         })
         .catch(err=>{
             console.log(err)
         })
     
-    if(isSignedIn){
+    if(isLoading){
         console.log("네비게이터왔어.", isSignedIn)
         return <CheckLogin />
     }else{

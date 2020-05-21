@@ -44,7 +44,7 @@ const MovieHome = ({ route, navigation }:Props) => {
       logout: _logout,
     });
     console.log(route.params)
-    const logout = route.params.logout
+    // const logout = route.params.logout
     navigation.setOptions(()=>{
       return {
         title: 'MOVIEAPP',
@@ -60,8 +60,8 @@ const MovieHome = ({ route, navigation }:Props) => {
         headerRight: (
           <StyleButton
             onPress={() => {
-              if (logout && typeof logout === 'function') {
-                logout();
+              if (_logout && typeof _logout === 'function') {
+                _logout();
               }
             }}>
             <Icon source={require('~/Assets/Images/ic_logout.png')} />
